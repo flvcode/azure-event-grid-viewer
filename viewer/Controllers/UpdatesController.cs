@@ -66,10 +66,10 @@ namespace viewer.Controllers
         {
             using (var reader = new StreamReader(Request.Body, Encoding.UTF8))
             {
-                _logger.LogInformation($"============== HEADERS ================");
+                _logger.LogWarning($"============== HEADERS ================");
                 foreach (var header in HttpContext.Request.Headers)
                 {
-                    _logger.LogInformation($"{header.Key}: {header.Value}");
+                    _logger.LogWarning($"{header.Key}: {header.Value}");
                 }
                 
                 var jsonContent = await reader.ReadToEndAsync();
