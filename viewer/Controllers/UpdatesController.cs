@@ -67,7 +67,7 @@ namespace viewer.Controllers
             using (var reader = new StreamReader(Request.Body, Encoding.UTF8))
             {
                 _logger.LogInformation($"============== HEADERS ================");
-                foreach (var header in headers)
+                foreach (var header in HttpContext.Request.Headers)
                 {
                     _logger.LogInformation($"{header.Key}: {header.Value}");
                 }
