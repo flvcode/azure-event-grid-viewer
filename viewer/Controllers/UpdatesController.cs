@@ -63,6 +63,11 @@ namespace viewer.Controllers
         {
             using (var reader = new StreamReader(Request.Body, Encoding.UTF8))
             {
+                foreach (var header in HttpContext.Response.Headers)
+                {
+                    Console.WriteLine($"{header.Key}: {header.Value}");
+                }
+                
                 var jsonContent = await reader.ReadToEndAsync();
 
                 // Check the event type.
