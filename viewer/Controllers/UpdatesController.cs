@@ -20,7 +20,7 @@ namespace viewer.Controllers
     public class UpdatesController : Controller
     {
         #region Data Members
-        private readonly ILogger<ExampleController> _logger;
+        private readonly ILogger<UpdatesController> _logger;
 
         private bool EventTypeSubcriptionValidation
             => HttpContext.Request.Headers["aeg-event-type"].FirstOrDefault() ==
@@ -36,7 +36,7 @@ namespace viewer.Controllers
 
         #region Constructors
 
-        public UpdatesController(IHubContext<GridEventsHub> gridEventsHubContext, ILogger<ExampleController> logger)
+        public UpdatesController(IHubContext<GridEventsHub> gridEventsHubContext, ILogger<UpdatesController> logger)
         {
             this._hubContext = gridEventsHubContext;
             this._logger = logger;
