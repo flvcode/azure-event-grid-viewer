@@ -19,6 +19,7 @@ namespace viewer.Controllers
     public class UpdatesController : Controller
     {
         #region Data Members
+        private readonly ILogger<ExampleController> _logger;
 
         private bool EventTypeSubcriptionValidation
             => HttpContext.Request.Headers["aeg-event-type"].FirstOrDefault() ==
@@ -34,9 +35,10 @@ namespace viewer.Controllers
 
         #region Constructors
 
-        public UpdatesController(IHubContext<GridEventsHub> gridEventsHubContext)
+        public UpdatesController(IHubContext<GridEventsHub> gridEventsHubContext, ILogger<ExampleController> logger)
         {
             this._hubContext = gridEventsHubContext;
+            this._logger = logger;
         }
 
         #endregion
@@ -63,9 +65,10 @@ namespace viewer.Controllers
         {
             using (var reader = new StreamReader(Request.Body, Encoding.UTF8))
             {
-                foreach (var header in HttpContext.Response.Headers)
+                _logger.LogInformation($"============== HEADERS ================");
+                foreach (var header in headers)
                 {
-                    Console.WriteLine($"{header.Key}: {header.Value}");
+                    _logger.LogInformation($"{header.Key}: {header.Value}");
                 }
                 
                 var jsonContent = await reader.ReadToEndAsync();
