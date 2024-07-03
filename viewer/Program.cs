@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using viewer.Hubs;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddSignalR();
+builder.Services.AddLogging();
 
 var app = builder.Build();
 app.UseHttpsRedirection();
